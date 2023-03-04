@@ -1,0 +1,6 @@
+{
+  "tank_speed": 5,
+  "enemy_count": 10,
+  "bullet_speed": 10,
+  "enemy_shoot_probability": 0.95
+}
