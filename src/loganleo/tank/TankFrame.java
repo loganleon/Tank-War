@@ -4,6 +4,9 @@ import loganleo.tank.entitiy.Bullet;
 import loganleo.tank.entitiy.Explosion;
 import loganleo.tank.entitiy.Tank;
 import loganleo.tank.entitiy.Group;
+import loganleo.tank.fireStrategy.DefaultFireStrategy;
+import loganleo.tank.fireStrategy.FireStrategy;
+import loganleo.tank.fireStrategy.FourDirFireStrategy;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -23,9 +26,13 @@ public class TankFrame extends Frame {
     // one class, only one myTank
     private static final Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD);
     // use LinkedList, because we will frequently delete items from it. LinkedList delete has better Time Complexity
-    private static final List<Bullet> bullets = new LinkedList<>();
+    public static final List<Bullet> bullets = new LinkedList<>();
     private static final List<Tank> enemies = new LinkedList<>();
     private static final List<Explosion> explosions = new LinkedList<>();
+
+
+    private static final FireStrategy myFireStrategy = FourDirFireStrategy.getInstance();
+    private static final FireStrategy enemyStrategy = DefaultFireStrategy.getInstance();
 
     private static final float ENEMY_SHOOT_PROBABILITY = ConfigManager.ENEMY_SHOOT_PROBABILITY;
 
@@ -95,7 +102,7 @@ public class TankFrame extends Frame {
             enemy.paint(g);
             // to randomly let enemies fire
             if (random.nextInt(100) > (int) (ENEMY_SHOOT_PROBABILITY * 100)) {
-                bullets.add(enemy.fire());
+                enemy.fire(enemyStrategy);
             }
         }
         // draw explosion
@@ -178,7 +185,7 @@ public class TankFrame extends Frame {
                     break;
                 // after release control key, fire
                 case KeyEvent.VK_CONTROL:
-                    bullets.add(myTank.fire());
+                    myTank.fire(myFireStrategy);
                 default:
 
             }

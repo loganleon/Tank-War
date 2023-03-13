@@ -13,6 +13,9 @@ public class ConfigManager {
 
     public static final float ENEMY_SHOOT_PROBABILITY;
 
+    // Singleton
+    private ConfigManager() {}
+
     static {
         InputStream inputStream = ConfigManager.class.getClassLoader().getResourceAsStream("config.json");
         String jsonString;

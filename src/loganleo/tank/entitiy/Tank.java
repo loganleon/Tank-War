@@ -4,6 +4,7 @@ import loganleo.tank.ConfigManager;
 import loganleo.tank.Dir;
 import loganleo.tank.ResourceManager;
 import loganleo.tank.TankFrame;
+import loganleo.tank.fireStrategy.FireStrategy;
 
 import java.awt.*;
 import java.util.Random;
@@ -182,10 +183,8 @@ public class Tank {
 
     }
 
-    public Bullet fire() {
-        int bulletX = this.x + Tank.WIDTH / 2 - Bullet.getWidth() / 2;
-        int bulletY = this.y + Tank.HEIGHT / 2;
-        return new Bullet(bulletX, bulletY, this.dir, this.group);
+    public void fire(FireStrategy fireStrategy) {
+        fireStrategy.fire(this);
     }
 
     public void die() {

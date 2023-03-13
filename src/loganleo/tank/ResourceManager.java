@@ -14,6 +14,8 @@ public class ResourceManager {
     public static BufferedImage bulletL, bulletU, bulletR, bulletD;
     public static BufferedImage[] explosion = new BufferedImage[16];
 
+    // Singleton
+    private ResourceManager() {}
     static {
         try {
             tankU = ImageIO.read(Objects.requireNonNull(ResourceManager.class.getClassLoader().getResourceAsStream("loganleo/tank/images/BadTank1.png")));
