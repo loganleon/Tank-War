@@ -58,6 +58,7 @@ public class Bullet {
         this.bulletRect.width = WIDTH;
         this.bulletRect.height = HEIGHT;
     }
+
     public void paint(Graphics g) {
         switch (this.dir) {
             case LEFT:

@@ -1,5 +1,8 @@
 package loganleo.tank;
 
+import loganleo.tank.fireStrategy.DefaultFireStrategy;
+import loganleo.tank.fireStrategy.FireStrategy;
+import loganleo.tank.fireStrategy.FourDirFireStrategy;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -12,6 +15,9 @@ public class ConfigManager {
     public static final int BULLET_SPEED;
 
     public static final float ENEMY_SHOOT_PROBABILITY;
+
+    private static final int MY_FIRE_STRATEGY;
+    private static final int ENEMY_FIRE_STRATEGY;
 
     // Singleton
     private ConfigManager() {}
@@ -30,6 +36,28 @@ public class ConfigManager {
         ENEMY_COUNT = jsonObject.getInt("enemy_count");
         BULLET_SPEED = jsonObject.getInt("bullet_speed");
         ENEMY_SHOOT_PROBABILITY = jsonObject.getFloat("enemy_shoot_probability");
+
+        MY_FIRE_STRATEGY = jsonObject.getInt("my_fire_strategy");
+        ENEMY_FIRE_STRATEGY = jsonObject.getInt("enemy_fire_strategy");
     }
 
+    public static FireStrategy getMyFireStrategy() {
+        switch (MY_FIRE_STRATEGY) {
+            default:
+            case 1:
+                return DefaultFireStrategy.getInstance();
+            case 2:
+                return FourDirFireStrategy.getInstance();
+        }
+    }
+
+    public static FireStrategy getEnemyFireStrategy() {
+        switch (ENEMY_FIRE_STRATEGY) {
+            default:
+            case 1:
+                return DefaultFireStrategy.getInstance();
+            case 2:
+                return FourDirFireStrategy.getInstance();
+        }
+    }
 }

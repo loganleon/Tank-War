@@ -31,8 +31,8 @@ public class TankFrame extends Frame {
     private static final List<Explosion> explosions = new LinkedList<>();
 
 
-    private static final FireStrategy myFireStrategy = FourDirFireStrategy.getInstance();
-    private static final FireStrategy enemyStrategy = DefaultFireStrategy.getInstance();
+    private static final FireStrategy myFireStrategy = ConfigManager.getMyFireStrategy();
+    private static final FireStrategy enemyStrategy = ConfigManager.getEnemyFireStrategy();
 
     private static final float ENEMY_SHOOT_PROBABILITY = ConfigManager.ENEMY_SHOOT_PROBABILITY;
 
